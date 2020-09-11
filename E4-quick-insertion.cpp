@@ -19,7 +19,7 @@ void quick_insertion(std::vector<int>& sec);
 
 int main(void)
 {
-  std::vector<int> secuence = {1, 32, 72, 2, 4};
+  std::vector<int> secuence = /* {7,1,3,5,4} */ {22, 21, 36, 42, 33, 38, 45, 31, 17};
   for (int i = 0; i < int(secuence.size()); i++)
     std::cout << "[" << i << ":" << secuence[i] << "]";
   std::cout << "\n"; 
@@ -37,5 +37,50 @@ int main(void)
 
 void quick_insertion(std::vector<int>& sec)
 {
+  // Se elige un pivote -> se hacen los recorridos ascendente y descendente
+  // ascendente encuentra un valor menor o igual al pivote -> lo inserta en orden en la izquierda
+  // ascendente encuentra un valor mayor -> el recorrido se detiene
+  // descendente encuentra un valor mayor o igual al pivote -> lo inserta en orden en la derecha
+  // descendenta encuentra un valor menor -> el recorrido se detiene
+  // ambos recorridos se detienen -> intercambian los elementos donde pararon
+  
+  int i = 0, f = sec.size() -1, sz = sec.size();
+  int p = sec[(f+i)/2];
+  std::cout << "inicio: " << i;
+  std::cout << "    fin: " << f;
+  std::cout << "    pivote: " << p <<"\n";  
+
+  while (i <= f) 
+  {
+    while (sec[i] <= p) 
+    { // Inserta i izquierda
+      int j = i;
+      while ( (sec[i] <= sec[j]) && (j >= 0) ) 
+      {      
+        std::swap(sec[i],sec[j]);
+        j-- ;
+      } 
+      i++ ;
+
+    };
     
+        std::cout << "aqui\n";
+    while (sec[f] >= p) 
+    { // Inserta f derecha (sec,f);
+      int g = f;
+
+      while ( (sec[f] >= sec[g]) && (g < sz) ) 
+      {
+
+        std::swap(sec[g],sec[f]);
+        g++ ;
+      }
+      f-- ;
+      
+    }
+    if (i <= f) 
+    { // Intercambia
+        std::swap(sec[i],sec[f]);
+    }
+  } 
 }

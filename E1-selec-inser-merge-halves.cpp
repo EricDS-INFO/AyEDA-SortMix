@@ -33,7 +33,7 @@ int main(void)
 
 void select_insert_merge_halfs(std::vector<int>& sec)
 {
-  //////// primera mitad (inserción de menor a mayor)////////
+  //////// primera mitad (selección de menor a mayor)////////
   int n = int(sec.size());
   for (int i = 0; i < n/2; i++) 
   { 
